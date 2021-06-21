@@ -1,14 +1,30 @@
 import React, { Component } from 'react';   
-import { getMovies } from '../services/fakeGenreService';
+import { getMovies } from '../services/fakeMovieService';
 
 class MovieTable extends Component {
+    state = {
+        movies: []
+    }
     getAllMovies(){
-        return getMovies();
+        this.setState({ movies }, getMovies());
     }
 
     render() { 
         return ( 
-        <table></table> 
+        <table onLoad={() => this.getAllMovies}>
+            <tr>
+                <th>Title</th><th>Genre</th><th>Stock</th><th>Rental Rate</th>
+            </tr>
+            {this.state.movies.forEach(movie => 
+            { 
+                <React.Fragment>
+                    <td>movie.title</td>
+                    <td>movie.genre.name</td>
+                    <td>movie.numberInStock</td>
+                    <td>movie.rentalRate</td>
+                </React.Fragment>
+            })}
+        </table> 
         );
     }
 }
