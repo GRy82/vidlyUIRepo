@@ -5,11 +5,10 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
 import reportWebVitals from './reportWebVitals';
-import MovieTable from './components/movieTable';
 
 ReactDOM.render(
   <React.StrictMode>
-    <MovieTable />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
