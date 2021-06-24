@@ -1,15 +1,19 @@
 import React from 'react';
 
 const ListGroup = (props) => {
-    const { genres } = props;
+    const { items, type, valueProperty, textProperty } = props;
     return ( 
         <ul className="list-group">
             <li className="list-group-item">
-                <button>All Genres</button>
+                <button>All {type}</button>
             </li>
-            {genres.map(genre => ( 
-                <li className="list-group-item">
-                    <button>{genre.name}</button>
+            {items.map(item => ( 
+                <li 
+                    key={item[valueProperty]} 
+                    className="list-group-item">
+                    <button>
+                        {item[textProperty]}
+                    </button>
                 </li>
             ))}
         </ul>
