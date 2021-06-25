@@ -2,7 +2,7 @@ import React from 'react';
 import Like from './common/like';
 
 const MoviesTable = (props) => {
-    const { onLike, onDelete, movies } = props;
+    const { onLike, onDelete, movies, onSort } = props;
 
     return (  
         <table className="table col">
