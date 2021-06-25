@@ -1,6 +1,6 @@
 import React, { Component } from 'react';   
 import { getMovies } from '../services/fakeMovieService';
-import Like from './common/like';
+import MoviesTable from './moviesTable';
 import Pagination from './common/pagination';
 import { paginate } from '../util/pagination';
 import { getGenres } from '../services/fakeGenreService';
@@ -57,7 +57,6 @@ class Movies extends Component {
         return ( 
             <div className="row">
                 <p>Showing {filtered.length} movies in the database.</p>
-                
                 <div className="col-3">
                     <ListGroup 
                         items={genres}
@@ -67,38 +66,11 @@ class Movies extends Component {
                     />
                 </div>
                 <div className="col">
-                    <table className="table col">
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Genre</th>
-                                <th>Stock</th>
-                                <th>Rate</th>
-                                <th>    </th>
-                                <th>    </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {movies.map(movie => 
-                        (
-                            <tr key={movie._id}>
-                                <td>{movie.title}</td>
-                                <td>{movie.genre.name}</td>
-                                <td>{movie.numberInStock}</td>
-                                <td>{movie.dailyRentalRate}</td>
-                                <td><Like liked={movie.liked} onLike={() => this.handleLike(movie)}/></td>
-                                <td>
-                                    <button 
-                                        onClick={() => this.handleDelete(movie)} 
-                                        className="btn btn-sm btn-danger"
-                                    >
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                        </tbody>
-                    </table> 
+                    <MoviesTable 
+                        movies={movies}
+                        onDelete={this.handleDelete}
+                        onLike={this.handleLike}
+                    />
                     <Pagination 
                         movieCount={filtered.length} 
                         pageSize={pageSize} 
