@@ -16,7 +16,7 @@ class Movies extends Component {
     }
 
     componentDidMount() {
-        const genres = [{ name: 'All Genres'}, ...getGenres()];
+        const genres = [{ _id: '', name: 'All Genres'}, ...getGenres()];
         this.setState({ movies: getMovies(), genres });
     }
 
@@ -42,6 +42,10 @@ class Movies extends Component {
         this.setState({ selectedGenre: genre, currentPage: 1 });
     }
 
+    handleSort = path => {
+        
+    }
+
     render() { 
         const { length: count } = this.state.movies;
         const { pageSize, currentPage, movies: allMovies, genres, selectedGenre } = this.state;
@@ -60,7 +64,6 @@ class Movies extends Component {
                 <div className="col-3">
                     <ListGroup 
                         items={genres}
-                        type={"Genres"} 
                         selectedGenre={selectedGenre}
                         onItemSelect={this.handleGenreSelect}
                     />
@@ -70,6 +73,7 @@ class Movies extends Component {
                         movies={movies}
                         onDelete={this.handleDelete}
                         onLike={this.handleLike}
+                        onSort={this.handleSort}
                     />
                     <Pagination 
                         movieCount={filtered.length} 
