@@ -2,6 +2,8 @@
 import { Switch, Router, Redirect } from 'react-router-dom';
 import './App.css';
 import Movies from './components/movies';
+import Rentals from './components/rentals';
+import Customers from './components/customers';
 import NavBar from './components/navbar';
 
 function App() {
