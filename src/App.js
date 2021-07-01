@@ -1,13 +1,14 @@
 //import logo from './logo.svg';
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import './App.css';
 import Movies from './components/movies';
 import Rentals from './components/rentals';
 import Customers from './components/customers';
 import NotFound from './components/NotFound';
 import NavBar from './components/navbar';
 import MovieForm from './components/movieForm';
+import Login from './components/login';
+import './App.css';
 
 class App extends Component{
   render(){
@@ -16,6 +17,7 @@ class App extends Component{
         <NavBar />
         <main className="container">
           <Switch>
+            <Route path="/login" component={Login}></Route>
             <Route path="/movies/:id" component={MovieForm}></Route>
             <Route path="/movies" component={Movies}></Route>
             <Route path="/customers" component={Customers}></Route>
