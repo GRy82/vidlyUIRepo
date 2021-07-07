@@ -4,11 +4,21 @@ import Input from './common/input';
 
 class Login extends Component {
     state = {
-        account: { username: "", password: "" }
+        account: { username: "", password: "" },
+        errors: {}
+    };
+
+    validate = () => {
+        return { username: "Username is required." };
     }
 
     handleSubmit = e => {
         e.preventDefault();
+
+        const errors = validate();
+        if(errors) return;
+
+        //make call
         console.log('submitted');
     }
 
