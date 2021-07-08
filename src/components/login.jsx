@@ -1,62 +1,28 @@
 import React, { Component } from 'react';
 import Input from './common/input';
 import Joi from 'joi-browser';
+import Form from './common/form';
 
 
-class Login extends Component {
+class Login extends Form {
     state = {
-        account: { username: "", password: "" },
+        data: { username: "", password: "" },
         errors: {}
     };
-
+    
     schema = {
         username: Joi.string().required().label('Username'),
         password: Joi.string().required().label('Password')
     };
 
-    validate = () => {
-        const { account } = this.state;
-
-        const { error } = Joi.validate(account, this.schema, { abortEarly: false });
-        if(!error) return null;
-
-        const errors = {};
-        for(let item of error.details) errors[item.path[0]] = item.message;
-        return errors;
-
-    }
-
-    validateProperty = ({ name, value }) => {
-        const obj = { [name]: value };
-        const schema = { [name]: this.schema[name] }
-        const { error } = Joi.validate(obj, schema);
-        return error ? error.details[0].message : null;
-    }
-
-    handleSubmit = e => {
-        e.preventDefault();
-
-        const errors = this.validate();
-        this.setState({ errors: errors || {} });
-        if(errors) return;
-
+    doSubmit = () => {
         //make call
         console.log('submitted');
-    }
+    };
 
-    handleChange = ({ currentTarget: input }) => {
-        const errors = {...this.state.errors}
-        const errorMessage = this.validateProperty(input);
-        if(errorMessage) errors[input.name] = errorMessage;
-        else delete errors[input.name];
-
-        const account = {...this.state.account};
-        account[input.name] = input.value;
-        this.setState({ account, errors });
-    }
 
     render() { 
-        const { account, errors } = this.state;
+        const { data, errors } = this.state;
 
         return (  
             <div>
@@ -66,14 +32,14 @@ class Login extends Component {
                         onChange={this.handleChange}
                         label="Username"
                         name="username"
-                        value={account.username}
+                        value={data.username}
                         error={errors.username}
                     />
                     <Input 
                         onChange={this.handleChange}
                         label="Password"
                         name="password"
-                        value={account.password}
+                        value={data.password}
                         error={errors.password}
                     />
                     <button 
