@@ -1,6 +1,6 @@
 import http from './httpService';
 import config from '../config.json';
 
-export function getGenres() {
-    const result = http.get(config.genresEndpoint, )
+export async function getGenres() {
+    const result = await http.get(config.genresEndpoint)
 }
