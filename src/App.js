@@ -10,11 +10,16 @@ import MovieForm from './components/movieForm';
 import Login from './components/login';
 import './App.css';
 import Register from './components/register';
+import { ToastContainer } from 'react-toastify';
+
+
 
 class App extends Component{
   render(){
     return (
+      
       <React.Fragment>
+        <ToastContainer />
         <NavBar />
         <main className="container">
           <Switch>
