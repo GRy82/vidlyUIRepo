@@ -1,5 +1,7 @@
 //import logo from './logo.svg';
 import React, { Component } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Movies from './components/movies';
 import Rentals from './components/rentals';
@@ -10,8 +12,7 @@ import MovieForm from './components/movieForm';
 import Login from './components/login';
 import './App.css';
 import Register from './components/register';
-import { ToastContainer } from 'react-toastify';
-
+import http from './services/httpService';
 
 
 class App extends Component{
